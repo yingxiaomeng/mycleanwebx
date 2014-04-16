@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config description="cleanwebx">
+
+	<!-- dubbo config
+	<group name="dubbo.config">
+		<property name="eip.dubbo.registry.address" defaultValue="dubbo.aliyun.test:9090" description="dubbo注册地址" />
+		<property name="eip.dubbo.protocol.default.port" defaultValue="-1" description="dubbo协议端口" />
+		<property name="eip.dubbo.protocol.http.port" defaultValue="18080" description="dubbo http协议端口" />
+		<property name="eip.dubbo.contextpath" defaultValue="cseip" description="dubbo http context" />
+		<property name="eip.service.version" defaultValue="1.1.0_DEV" description="eip.service.version" />
+		<property name="eip.dubbo.timeout" defaultValue="5000" />
+		<property name="eip.dubbo.threads" defaultValue="300" />
+	</group>
+	 -->
+
+	<group name="datasource.config">
+		<property name="cleanwebx.database.username" defaultValue="haohao" description="数据库用户名" />
+		<property name="cleanwebx.database.password" defaultValue="198881" description="数据库密码（已加密）" />
+		<property name="cleanwebx.database.driver.url" defaultValue="jdbc:mysql:////127.0.0.1:3306/test??useUnicode=true&amp;characterEncoding=utf-8" description="JDBC Url"></property>
+		<property name="cleanwebx.datasource.maxActive" defaultValue="100" description="连接池最大连接数" />
+		<property name="cleanwebx.datasource.maxWait" defaultValue="60000" description="最大等待连接时间ms" />
+	</group>
+<!-- metaq tair config
+	<group name="metaq">
+		<property name="eip.metaq.zookeeper.address" defaultValue="10.125.8.233:2188,10.125.8.245:2188" />
+		<property name="eip.metaq.bid.conf.update.topic" defaultValue="TOPIC_RES_BID_CONF_UPDATE_270355" />
+		<property name="eip.metaq.bid.conf.update.group" defaultValue="resource_service" />
+	</group>
+
+	<group name="tair.config">
+		<property name="eip.tair.configID" defaultValue="ic_staticize_tair_rdb_test" description="tair.configID" />
+		<property name="eip.tair.namespace" defaultValue="0" description="tair.namespace" />
+	</group>
+-->
+	<group name="log4j">
+		<property name="log4j.dir" defaultValue="/alidata/www/logs/java" description="日志输出目录" />
+		<property name="log4j.level" defaultValue="debug" description="日志输出级别" />
+	</group>
+
+	<script>
+		<generate template="log4j.xml.vm" destfile="WEB-INF/classes/log4j.xml" charset="UTF-8" />
+		<generate template="cleanwebx.properties.vm" destfile="WEB-INF/classes/cleanwebx/config/cleanwebx.properties" charset="UTF-8" />
+	</script>
+
+</config>

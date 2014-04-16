@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE log4j:configuration SYSTEM "http://toolkit.alibaba-inc.com/dtd/log4j/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- 应用自身 deubg级别日志 -->
+	<appender name="APPLOG_DEBUG_LOG"
+		class="org.apache.log4j.AliyunDailyRollingFileAppender">
+		<param name="File" value="${log4j_dir}/cleanwebx/applog/debug.log" />
+		<param name="encoding" value="UTF-8" />
+		<param name="Append" value="true" />
+		<param name="originalLogSaveDays" value="30" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%c{2}.%M] [%t] %-5p - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="DEBUG" />
+		</filter>
+	</appender>
+
+	<!-- 应用自身 info级别日志 -->
+	<appender name="APPLOG_INFO_LOG"
+		class="org.apache.log4j.AliyunDailyRollingFileAppender">
+		<param name="File" value="${log4j_dir}/cleanwebx/applog/info.log" />
+		<param name="encoding" value="UTF-8" />
+		<param name="Append" value="true" />
+		<param name="originalLogSaveDays" value="30" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%c{2}.%M] [%t] %-5p - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+			<param name="LevelMax" value="INFO" />
+		</filter>
+	</appender>
+
+	<!-- 应用自身 warn级别日志 -->
+	<appender name="APPLOG_WARN_LOG"
+		class="org.apache.log4j.AliyunDailyRollingFileAppender">
+		<param name="File" value="${log4j_dir}/cleanwebx/applog/warn.log" />
+		<param name="encoding" value="UTF-8" />
+		<param name="Append" value="true" />
+		<param name="originalLogSaveDays" value="30" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%c{2}.%M] [%t] %-5p - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="WARN" />
+		</filter>
+	</appender>
+
+	<!-- 应用自身 error级别日志 -->
+	<appender name="APPLOG_ERROR_LOG"
+		class="org.apache.log4j.AliyunDailyRollingFileAppender">
+		<param name="File" value="${log4j_dir}/cleanwebx/applog/error.log" />
+		<param name="Append" value="true" />
+		<param name="originalLogSaveDays" value="30" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%c{2}.%M] [%t] %-5p - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- 应用自身 http-api请求日志 -->
+	<appender name="HTTP_API_LOG"
+		class="org.apache.log4j.AliyunDailyRollingFileAppender">
+		<param name="File"
+			value="${log4j_dir}/cleanwebx/http_api/http_api.log" />
+		<param name="Append" value="true" />
+		<param name="originalLogSaveDays" value="30" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%c{2}.%M] [%t] %-5p - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- 仅在开发时使用，上线时不允许将日志输出到console -->
+	<appender name="Console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} %l [%t] %-5p - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- dragoon监控日志收集appender -->
+	<appender name="DRAGOON_LOG"
+		class="com.alibaba.dragoon.patrol.log4j.PatrolLog4jAppender">
+		<param name="Threshold" value="ERROR" />
+	</appender>
+
+	<!-- 应用自身db-sql操作日志 -->
+	<appender name="DB_SQL_LOG"
+		class="org.apache.log4j.AliyunDailyRollingFileAppender">
+		<param name="File" value="${log4j_dir}/cleanwebx/dbsql/dbsql.log" />
+		<param name="Append" value="true" />
+		<param name="originalLogSaveDays" value="30" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%c{2}.%M] [%t] %-5p - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- metaq 日志 -->
+	<appender name="METAQ_LOG"
+		class="org.apache.log4j.AliyunDailyRollingFileAppender">
+		<param name="File" value="${log4j_dir}/cleanwebx/metaq/metaq.log" />
+		<param name="Append" value="true" />
+		<param name="originalLogSaveDays" value="30" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%c{2}.%M] [%t] %-5p - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- tair 日志 -->
+	<appender name="TAIR_LOG"
+		class="org.apache.log4j.AliyunDailyRollingFileAppender">
+		<param name="File" value="${log4j_dir}/cleanwebx/tair/tair.log" />
+		<param name="Append" value="true" />
+		<param name="originalLogSaveDays" value="30" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%c{2}.%M] [%t] %-5p - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- diamond 日志 -->
+	<appender name="DIAMOND_LOG"
+		class="org.apache.log4j.AliyunDailyRollingFileAppender">
+		<param name="File" value="${log4j_dir}/cleanwebx/diamond/diamond.log" />
+		<param name="Append" value="true" />
+		<param name="originalLogSaveDays" value="30" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} [%c{2}.%M] [%t] %-5p - %m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- 应用访问日志appender -->
+	<appender name="ACCESS_LOG"
+		class="org.apache.log4j.AliyunDailyRollingFileAppender">
+		<param name="file" value="${log4j_dir}/cleanwebx/accesslog/access.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="threshold" value="info" />
+		<param name="originalLogSaveDays" value="30" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{requestURIWithQueryString}] %-5p %c{2} - %m%n%n" />
+		</layout>
+	</appender>
+
+	<!-- 数据库sql操作log -->
+	<logger name="java.sql.Connection" additivity="false">
+		<level value="${log4j_level}" />
+		<appender-ref ref="DB_SQL_LOG" />
+	</logger>
+
+	<!-- 数据库sql操作log -->
+	<logger name="java.sql.Statement" additivity="false">
+		<level value="${log4j_level}" />
+		<appender-ref ref="DB_SQL_LOG" />
+	</logger>
+
+	<!-- 数据库sql操作log -->
+	<logger name="java.sql.PreparedStatement" additivity="false">
+		<level value="${log4j_level}" />
+		<appender-ref ref="DB_SQL_LOG" />
+	</logger>
+
+	<!-- 数据库sql操作log -->
+	<logger name="java.sql.ResultSet" additivity="false">
+		<level value="${log4j_level}" />
+		<appender-ref ref="DB_SQL_LOG" />
+	</logger>
+
+	<!-- metaq -->
+	<logger name="com.taobao.metamorphosis" additivity="false">
+		<level value="info" />
+		<appender-ref ref="METAQ_LOG" />
+	</logger>
+
+	<!-- tair -->
+	<logger name="com.taobao.tair" additivity="false">
+		<level value="info" />
+		<appender-ref ref="TAIR_LOG" />
+	</logger>
+
+	<!-- diamond -->
+	<logger name="com.taobao.diamond" additivity="false">
+		<level value="error" />
+		<appender-ref ref="DIAMOND_LOG" />
+	</logger>
+
+	<!-- 应用访问log -->
+	<logger name="accessLogger" additivity="false">
+		<level value="info" />
+		<appender-ref ref="ACCESS_LOG" />
+	</logger>
+
+	<!-- http api log -->
+	<logger name="com.aliyun.phoenix.resourcecenter.rmtwrapper.util.HttpInvoker" additivity="false">
+		<level value="info" />
+		<appender-ref ref="HTTP_API_LOG" />
+	</logger>
+
+	<!-- resource metaq message -->
+	<logger name="com.aliyun.phoenix.resource.support.message" additivity="false">
+		<level value="info" />
+		<appender-ref ref="METAQ_LOG" />
+	</logger>
+
+	<!-- 应用自身log配置，使用package匹配 -->
+	<logger name="com.aliyun.phoenix" additivity="true">
+		<level value="${log4j_level}" />
+		<appender-ref ref="APPLOG_DEBUG_LOG" />
+		<appender-ref ref="DRAGOON_LOG" />
+	</logger>
+
+	<!-- 根配置 -->
+	<root>
+		<priority value="${log4j_level}" />
+		<!-- <appender-ref ref="Console" /> 仅在开发时使用，上线时不允许将日志输出到console -->
+
+		<appender-ref ref="APPLOG_INFO_LOG" />
+		<appender-ref ref="APPLOG_WARN_LOG" />
+		<appender-ref ref="APPLOG_ERROR_LOG" />
+	</root>
+
+</log4j:configuration>   

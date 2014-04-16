@@ -1,0 +1,27 @@
+<div >
+
+<div >DashBoard</div>
+<div >
+  <table>
+    <col class="th" />
+    <col />
+    <col class="th" />
+    <col />
+    <col class="th" />
+    <col />
+    <tr>
+      <th>Service统计</th>
+      <td>10</td>
+    </tr>
+    <tr> 
+      <th>Server统计</th>
+      <td>10</td>
+    </tr>
+    <tr> 
+      <th>API发布状态</th>
+      <td><div class="green">3333</div></td>
+    </tr>
+  </table>
+</div>
+</div>
+

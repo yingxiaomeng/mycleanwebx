@@ -1,0 +1,27 @@
+log4j.dir = /alidata/www/logs/java/
+log4j.level = info
+
+#database for dev
+eip.database.username=${eip_database_username}
+eip.database.password=${eip_database_password}
+eip.database.driver.url=${eip_database_driver_url}
+eip.datasource.maxActive=${eip_datasource_maxActive}
+eip.datasource.maxWait=${eip_datasource_maxWait}
+
+#dubbo
+eip.dubbo.registry.address=${eip_dubbo_registry_address}
+eip.dubbo.protocol.default.port=${eip_dubbo_protocol_default_port}
+eip.dubbo.protocol.http.port=${eip_dubbo_protocol_http_port}
+
+#version
+eip.service.version=${eip_service_version}
+
+eip.dubbo.contextpath=${eip_dubbo_contextpath}
+
+eip.dubbo.timeout=${eip_dubbo_timeout}
+eip.dubbo.threads=${eip_dubbo_threads}
+
+eip.tair.configID=${tair_configID}
+eip.tair.namespace=${tair_namespace}
+eip.tair.version=0
+

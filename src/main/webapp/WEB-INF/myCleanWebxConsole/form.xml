@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:services="http://www.alibaba.com/schema/services" xmlns:fm-validators="http://www.alibaba.com/schema/services/form/validators"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+                 http://www.alibaba.com/schema/services                 http://localhost:8080/schema/services.xsd
+                 http://www.alibaba.com/schema/services/form/validators http://localhost:8080/schema/services-form-validators.xsd
+                 http://www.springframework.org/schema/beans            http://localhost:8080/schema/www.springframework.org/schema/beans/spring-beans.xsd
+             ">
+
+	<services:form postOnlyByDefault="true">
+		<!-- - =============================================== - 用来检查csrf token。 - =============================================== -->
+	<!-- 	<group name="csrfCheck">
+			<field name="csrfToken">
+				<fm-validators:csrf-validator>
+					<message>提交的数据已过期</message>
+				</fm-validators:csrf-validator>
+			</field>
+		</group>
+
+		<group name="dictInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="dictName" displayName="词名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="dictValue" displayName="词内容">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="dictType" displayName="词类型">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="templateInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="categoryId" displayName="服务分类ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="templateName" displayName="模板名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="templateConfig" displayName="模板配置">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="categoryInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="categoryName" displayName="分类名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="serviceInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="serviceName" displayName="服务名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+
+ 			<field name="interfaceName" displayName="接口名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="version" displayName="版本号">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="categoryId" displayName="服务分类ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="publishStatus" displayName="发布状态" defaultValue="0" />
+			<field name="modelConfig" displayName="Model配置" />
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+			<field name="protocolIn" displayName="接入协议" />
+			<field name="protocolOut" displayName="暴露协议" />
+			<field name="serviceModelXml" displayName="Model配置" />
+			<field name="serviceProperties" displayName="Properties配置" />
+		</group>
+
+		<group name="servicePropertyInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="propertyType" displayName="属性类型">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="serviceId" displayName="服务ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="propertyKey" displayName="属性名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="propertyValue" displayName="属性值">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="serviceApiInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="apiName" displayName="API名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="serviceId" displayName="服务ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="categoryId" displayName="服务分类ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="publishStatus" displayName="发布状态" defaultValue="0" />
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="serviceApiParam" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="apiId" displayName="API_ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="paramName" displayName="参数名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="paramType" displayName="参数类型">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="dataType" displayName="数据类型">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="defValue" displayName="默认值" />
+			<field name="isMust" displayName="是否必须" />
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="serviceApiPipelineRef" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="apiId" displayName="ApiID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="pipelineId" displayName="管道ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="pipelineInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="pipelineName" displayName="管道名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="pipelineXml" displayName="管道XML">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="version" displayName="版本号">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="publishStatus" displayName="发布状态" defaultValue="0" />
+			<field name="parentId" displayName="管道父ID" defaultValue="0" />
+			<field name="pipelineOrder" displayName="管道顺序" defaultValue="0" />
+			<field name="categoryId" displayName="服务分类ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="extJarInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="jarName" displayName="Jar名称" />
+			<field name="jarPath" displayName="Jar部署路径" />
+			<field name="jarBlob" displayName="JarBlob" />
+			<field name="jarMd5" displayName="md5摘要" />
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="extJarPipelineRef" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="jarId" displayName="JarID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="pipelineId" displayName="管道ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="serverInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="serverName" displayName="服务器名称" />
+			<field name="serverIp" displayName="服务器IP" />
+			<field name="serverPort" displayName="服务器端口" />
+			<field name="registerStatus" displayName="注册状态" />
+			<field name="registerTime" displayName="注册时间" />
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="serverLog" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="serverId" displayName="服务器ID" />
+			<field name="registerStatus" displayName="注册状态" />
+			<field name="registerTime" displayName="注册时间" />
+			<field name="description" displayName="描述" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+		</group>
+
+		<group name="serverServiceRef" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="serverId" displayName="服务器ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="serviceId" displayName="服务ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+		</group>
+
+
+		<group name="valveInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="categoryId" displayName="服务分类ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="valveName" displayName="阀门名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="valveClass" displayName="阀门类名">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="valveProps" displayName="阀门属性" />
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="pipelineValveRef" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="pipelineId" displayName="管道ID" />
+			<field name="valveId" displayName="阀门ID" />
+			<field name="valveOrder" displayName="阀门顺序" />
+			<field name="valveProps" displayName="阀门属性" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="pipelineInvokeInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="pipelineId" displayName="管道ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="protocol" displayName="接入协议">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="service" displayName="服务URI">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="method" displayName="方法名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="version" displayName="版本">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="timeout" displayName="超时时间" />
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="pipelineScopeInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="pipelineId" displayName="管道ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="scopeName" displayName="参数域名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="scopeClass" displayName="参数域类名" />
+			<field name="scopeRole" displayName="参数域角色">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="validStatus" displayName="有效状态" />
+			<field name="description" displayName="描述" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="pipelineParamInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="pipelineId" displayName="管道ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="paramName" displayName="参数名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="paramClass" displayName="参数类名" />
+			<field name="paramType" displayName="参数类型" />
+			<field name="paramDefValue" displayName="默认值" />
+			<field name="paramRequired" displayName="是否必选" />
+			<field name="paramFlag" displayName="参数标记" />
+			<field name="paramExample" displayName="参数示例" />
+			<field name="paramValidate" displayName="参数验证配置" />
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="pipelineParamValidate" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="paramId" displayName="参数ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="validateMatch" displayName="验证匹配规则">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="validateOrder" displayName="验证顺序" />
+			<field name="validateMax" displayName="最大值（长度）" />
+			<field name="validateMin" displayName="最小值（长度）" />
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="serviceModelInfo" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="serviceId" displayName="服务ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="modelName" displayName="模型名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="modelClass" displayName="模型类名">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="modelExtendz" displayName="模型继承" />
+			<field name="modelExampleXml" displayName="模型示例Xml" />
+			<field name="modelExampleJson" displayName="模型示例Json" />
+			<field name="modelExampleText" displayName="模型示例Text" />
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+
+		<group name="serviceModelField" extends="csrfCheck">
+			<field name="id" displayName="ID" />
+			<field name="modelId" displayName="模型ID">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="fieldName" displayName="字段名称">
+				<fm-validators:required-validator>
+					<message>必须填写 ${displayName}</message>
+				</fm-validators:required-validator>
+			</field>
+			<field name="fieldClass" displayName="字段类名" />
+			<field name="fieldExample" displayName="示例值" />
+			<field name="description" displayName="描述" />
+			<field name="validStatus" displayName="有效状态" />
+			<field name="gmtCreated" displayName="创建时间" />
+			<field name="gmtModified" displayName="更新时间" />
+			<field name="staffId" displayName="操作人ID" />
+			<field name="checkcode" displayName="更新检查码" />
+		</group>
+-->
+	</services:form>
+	
+
+</beans:beans>
